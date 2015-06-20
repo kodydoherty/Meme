@@ -28,29 +28,30 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTF.textAlignment = .Center
         bottomTF.defaultTextAttributes = memeTextAttributes
         bottomTF.textAlignment = .Center
-        self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
+        tabBarController?.dismissViewControllerAnimated(true, completion: nil)
         toggleEnabled(false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        self.subscribeToKeyboardNotifications()
-        self.subscribeToKeyboardNotificationsHide()
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotificationsHide()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.unsubscribeFromKeyboardNotifications()
-        self.unsubscribeFromKeyboardNotificationsHide() 
+        unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotificationsHide()
     }
     
     func imagePickerController(picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+            //Set the image from the users selection
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage  {
-                self.imageView.image = image
+                imageView.image = image
             }
-            self.dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -66,13 +67,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Keyboard Notifications
     func keyboardWillHide(notification: NSNotification){
         if(bottomTF.isFirstResponder()) {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillShow(notification: NSNotification){
         if(bottomTF.isFirstResponder()) {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
@@ -94,17 +95,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    //Creating Meme 
-    func save() -> UIImage {
-        var meme = Meme(top: topTF.text!, bottom: bottomTF.text!, image: imageView.image!, memedImage: generateMemedImage())
+    //Creating Meme and storing it in the AppDelegate array
+    func save() {
+        var meme = Meme(top: topTF.text!, bottom: bottomTF.text!, image: imageView.image!, memedImage: memeImageNew)
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
-        return meme.memedImage
+      
     }
     
+    //Creating Meme image
     func generateMemedImage() -> UIImage {
         toggleNavs(true)
         UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         toggleNavs(false)
@@ -113,35 +115,37 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     //IBActions
     @IBAction func shareMeme(sender: UIBarButtonItem) {
-        memeImageNew = self.save()
+        memeImageNew = generateMemedImage()
         let vc = UIActivityViewController(activityItems: [memeImageNew], applicationActivities: [])
         presentViewController(vc, animated: true, completion: nil)
-        self.shareButton.enabled = false
-        
+        shareButton.enabled = false
         vc.completionWithItemsHandler = {
             (activity, success, items, error) in
             if success {
+                self.save()
                 var nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("tabBarController") as! UITabBarController
                 self.presentViewController(nextVC, animated: true, completion: nil)
             }
         }
     }
+    
     @IBAction func cancelEdit(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
  
     @IBAction func pickAnImageWithCamera(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
         toggleEnabled(true)
     }
+    
     @IBAction func pickAnImage(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
         toggleEnabled(true)
     }
     
@@ -154,14 +158,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func toggleEnabled(toggle:Bool) {
-        self.shareButton.enabled = toggle
-        self.topTF.enabled = toggle
-        self.bottomTF.enabled = toggle
+        shareButton.enabled = toggle
+        topTF.enabled = toggle
+        bottomTF.enabled = toggle
     }
     
     func toggleNavs(toggle:Bool) {
-        self.navigationController?.setNavigationBarHidden(toggle, animated: false)
-        self.toolbar.hidden = toggle
+        navigationController?.setNavigationBarHidden(toggle, animated: false)
+        toolbar.hidden = toggle
     }
 
 

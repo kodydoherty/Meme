@@ -24,6 +24,6 @@ class SentViewController: UIViewController {
     
     //IBActions
     @IBAction func backButton(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

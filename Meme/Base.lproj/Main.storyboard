@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-Eb-BSU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-Eb-BSU">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2U-pl-FKh">
@@ -149,7 +149,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="5Rk-Y5-2aw">
-                        <barButtonItem key="leftBarButtonItem" image="share" id="G0H-N7-8vp">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="action" id="G0H-N7-8vp">
                             <connections>
                                 <action selector="shareMeme:" destination="vXZ-lx-hvc" id="PRw-Az-YXV"/>
                             </connections>
@@ -527,7 +527,6 @@
     <resources>
         <image name="columns" width="27" height="27"/>
         <image name="list" width="27" height="27"/>
-        <image name="share" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="B3N-Uk-NpZ"/>

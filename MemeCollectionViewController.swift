@@ -59,10 +59,10 @@ class MemeCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    //Set SentViewController meme to the one meme that was selected and seque to the SentVieController
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("Cell tapped")
         let nextVC = storyboard?.instantiateViewControllerWithIdentifier("sentVC") as! SentViewController
         nextVC.meme = memes[indexPath.row]
-        self.presentViewController(nextVC, animated: true, completion: nil)
+        presentViewController(nextVC, animated: true, completion: nil)
     }
 }
