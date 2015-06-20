@@ -302,7 +302,7 @@
                                     <navigationItem title="Meme" id="UoP-UY-HYL">
                                         <barButtonItem key="leftBarButtonItem" title="&lt; Back" style="plain" id="QiH-oQ-gVd">
                                             <connections>
-                                                <action selector="backButton:" destination="onp-k5-oYe" id="MO5-xb-AnW"/>
+                                                <action selector="backButton:" destination="onp-k5-oYe" id="rOO-9n-cPJ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -356,11 +356,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="mVc-iu-eVi">
-                        <barButtonItem key="rightBarButtonItem" title="Back" id="s2k-NT-tgC">
-                            <connections>
-                                <action selector="backButton:" destination="onp-k5-oYe" id="wtG-8w-QLB"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Back" id="s2k-NT-tgC"/>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="ldN-B4-rzZ" id="b3F-Bf-lsh"/>
@@ -474,7 +470,7 @@
         <scene sceneID="0WY-Vp-JUU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NtN-Ve-bMm" customClass="Meme" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="columns" selectedImage="columns" id="kmQ-lv-M1J"/>
+                    <tabBarItem key="tabBarItem" image="columns" id="kmQ-lv-M1J"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GDQ-Sj-r1f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -512,7 +508,7 @@
         <scene sceneID="Eql-zy-ULZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QIX-IL-bmI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list" selectedImage="list" id="1Ah-kN-pHr"/>
+                    <tabBarItem key="tabBarItem" title="" image="list" id="1Ah-kN-pHr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyH-qg-AK5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

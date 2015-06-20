@@ -92,14 +92,14 @@
 			isa = PBXGroup;
 			children = (
 				CBEA73081B3395FA0049DBE2 /* MemeTableViewController.swift */,
+				CBC8BA9A1B3509F600CF8081 /* MemeTableViewCell.swift */,
 				CBEA730A1B3396090049DBE2 /* MemeCollectionViewController.swift */,
 				CBC8BA981B34FBEA00CF8081 /* MemeCollectionViewCell.swift */,
 				CB00BD6A1B32545C006A158D /* AppDelegate.swift */,
 				CB00BD6F1B32545C006A158D /* MemeEditorViewController.swift */,
 				CB00BD8D1B325641006A158D /* Meme.swift */,
-				CB00BD711B32545C006A158D /* Main.storyboard */,
 				CBC8BA9C1B350AE100CF8081 /* SentViewController.swift */,
-				CBC8BA9A1B3509F600CF8081 /* MemeTableViewCell.swift */,
+				CB00BD711B32545C006A158D /* Main.storyboard */,
 				CB00BD741B32545C006A158D /* Images.xcassets */,
 				CB00BD761B32545C006A158D /* LaunchScreen.xib */,
 				CB00BD6C1B32545C006A158D /* Meme.xcdatamodeld */,

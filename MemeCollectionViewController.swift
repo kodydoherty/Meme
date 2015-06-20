@@ -12,9 +12,10 @@ let reuseIdentifier = "Cell"
 
 class MemeCollectionViewController: UICollectionViewController {
 
-
+    // IBActions
     @IBOutlet var cView: UICollectionView!
     
+    //Vars
     var memes: [Meme]!
     var screenSize: CGRect!
     var screenWidth: CGFloat!
@@ -25,10 +26,12 @@ class MemeCollectionViewController: UICollectionViewController {
         let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         memes = applicationDelegate.memes
         
+        // Screen dementions
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
         
+        // Change layout of collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: screenWidth / 3, height: screenWidth / 3)
@@ -36,12 +39,9 @@ class MemeCollectionViewController: UICollectionViewController {
         layout.minimumLineSpacing = 0
         cView.collectionViewLayout = layout
         
-
-        
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-
         return 1
     }
 
@@ -51,8 +51,8 @@ class MemeCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MemeCollectionViewCell
-        
         cell.imageView.image = memes[indexPath.row].memedImage
+        // Change size of cell
         cell.frame.size.width = screenWidth / 3
         cell.frame.size.height = screenWidth / 3
     

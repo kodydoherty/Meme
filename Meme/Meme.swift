@@ -12,7 +12,6 @@ import UIKit
 struct  Meme {
     var top:String = ""
     var bottom:String = ""
-    
     var image:UIImage
     var memedImage:UIImage
     

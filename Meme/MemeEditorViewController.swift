@@ -13,27 +13,22 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var albumbButton: UIBarButtonItem!
-
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-
     @IBOutlet weak var topTF: UITextField!
     @IBOutlet weak var bottomTF: UITextField!
+    
     //Vars
     let memeTextAttributes = [ NSStrokeColorAttributeName: UIColor.blackColor(), NSForegroundColorAttributeName: UIColor.whiteColor() , NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!, NSStrokeWidthAttributeName: NSNumber(double: -3.0) ]
-    
     var memeImageNew:UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         topTF.defaultTextAttributes = memeTextAttributes
         topTF.textAlignment = .Center
         bottomTF.defaultTextAttributes = memeTextAttributes
         bottomTF.textAlignment = .Center
-        
         self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
-        
         toggleEnabled(false)
     }
     
@@ -56,10 +51,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 self.imageView.image = image
             }
             self.dismissViewControllerAnimated(true, completion: nil)
-            
     }
-    
-    
+
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -69,7 +62,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.resignFirstResponder()
         return true
     }
-    
     
     // Keyboard Notifications
     func keyboardWillHide(notification: NSNotification){
@@ -84,7 +76,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    
+    //NSNotifications
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
     }
@@ -111,17 +103,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         toggleNavs(true)
-        
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         toggleNavs(false)
-        
         return memeImage
     }
-
     
     //IBActions
     @IBAction func shareMeme(sender: UIBarButtonItem) {
@@ -155,14 +143,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(imagePicker, animated: true, completion: nil)
         toggleEnabled(true)
-
-
-        
     }
     
     
     //Helper functions
-    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue

@@ -25,10 +25,8 @@ class MemeTableViewController: UITableViewController, UINavigationBarDelegate {
         return memes.count
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MemeTableViewCell
-
         cell.memeImageView.image = memes[indexPath.row].memedImage
         cell.label.text = memes[indexPath.row].top
         return cell
@@ -38,7 +36,6 @@ class MemeTableViewController: UITableViewController, UINavigationBarDelegate {
         let nextVC = storyboard?.instantiateViewControllerWithIdentifier("sentVC") as! SentViewController
         nextVC.meme = memes[indexPath.row]
         self.presentViewController(nextVC, animated: true, completion: nil)
-        
     }
 
 }
