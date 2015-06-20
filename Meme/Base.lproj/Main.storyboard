@@ -299,7 +299,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-0x-pgu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Meme" id="UoP-UY-HYL">
+                                    <navigationItem title="Meme Detail" id="UoP-UY-HYL">
                                         <barButtonItem key="leftBarButtonItem" title="&lt; Back" style="plain" id="QiH-oQ-gVd">
                                             <connections>
                                                 <action selector="backButton:" destination="onp-k5-oYe" id="rOO-9n-cPJ"/>
